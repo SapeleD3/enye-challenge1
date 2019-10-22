@@ -31,11 +31,11 @@ const styles = {
 };
 
 const infos = [{
-  FirstName: 'Moses',
-  LastName: 'Sapele',
-  Birthday: '22 june 1998',
-  Age: '22',
-  Hobby : 'watching Anime'
+  firstName: 'Moses',
+  lastName: 'Sapele',
+  birthday: '22 june 1998',
+  age: '22',
+  hobby : 'watching Anime'
 }];
 
 class Form extends Component {
@@ -44,7 +44,8 @@ class Form extends Component {
         lastName: '',
         birthday: '',
         age: '',
-        hobby : ''
+        hobby : '',
+        info: []
     }
     
     handleChange = (e) => {
@@ -55,19 +56,18 @@ class Form extends Component {
       const { firstName, lastName, birthday, age, hobby } = this.state
       const newInfo = {firstName, lastName, birthday, age, hobby};
       infos.push(newInfo)
-      console.log('1',infos)
+      console.log(infos)
       this.setState({info: infos})
     }
   render() {
     const { classes } = this.props;
-    const { firstName, lastName, birthday, age, hobby} = this.state
-    console.log(firstName)
-    console.log(birthday)
+    const { firstName, lastName, age, hobby, info} = this.state
+    const userTable = info.map(user => <UserDetail key={user.id} firstName={user.firstName} lastName={user.lastName} birthday={user.birthday} age={user.age} hobby={user.hobby}/>)
     return (
       <Grid container className={classes.form}>
         <Grid item sm >
           <Paper className={classes.paper}>
-            <UserDetail />
+            {userTable}
           </Paper>
         </Grid>
         <Grid item sm>
@@ -94,9 +94,10 @@ class Form extends Component {
               <TextField
               id="date"
               name="birthday"
+              onChange={this.handleChange}
               label="Birthday"
               type="date"
-              defaultValue={new Date().toISOString}
+              defaultValue={Date.now().toISOString}
               className={classes.textField}
               InputLabelProps={{
                 shrink: true,

@@ -1,17 +1,13 @@
-import React, { Component } from 'react'
+import React from 'react'
 import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
 
-
-export class UserDetail extends Component {
-    render() {
-        return (
-            <Card className='userCard'>
-                <CardContent>
-                </CardContent>
-            </Card>
-        )
-    }
+export default function UserDetail({firstName, lastName, birthday, age, hobby}) {
+    return (
+        <Card className='userCard'>
+                <p>FullName: {firstName}   {lastName}</p> <br/>
+                <p>Birthday: {` ${birthday}  `}</p> Age: {age} <br/>
+                Hobby: {hobby}
+        </Card>
+    )
 }
 
-export default UserDetail
