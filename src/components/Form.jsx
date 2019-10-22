@@ -5,6 +5,9 @@ import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import { TextField, Button, Paper } from "@material-ui/core";
 import UserDetail from "./UserDetail";
+import {addUser} from '../Redux/actions/userAction'
+
+import {connect} from 'react-redux'
 
 const styles = {
     form : {
@@ -34,14 +37,16 @@ const styles = {
     }
 };
 
-const infos = [{
-  firstName: 'Moses',
-  lastName: 'Sapele',
-  birthday: '22 june 1998',
-  age: '22',
-  hobby : 'watching Anime'
-}
-];
+const infos = {
+  info : [{
+    firstName: 'Moses',
+    lastName: 'Sapele',
+    birthday: '22 june 1998',
+    age: '22',
+    hobby : 'watching Anime'
+  }
+  ]
+};
 
 class Form extends Component {
     state = {
@@ -50,22 +55,23 @@ class Form extends Component {
         birthday: '',
         age: '',
         hobby : '',
-        info: []
     }
     
     handleChange = (e) => {
       this.setState({[e.target.name]: e.target.value})
     }
 
-    handleSubmit = () => {
+    handleSubmit = (e) => {
+      e.preventDefault()
       const { firstName, lastName, birthday, age, hobby } = this.state
       const newInfo = {firstName, lastName, birthday, age, hobby};
-      infos.push(newInfo)
-      this.setState({info: infos})
+      infos.info.push(newInfo)
+      this.props.addUser(infos)
+      // this.setState({info: infos})
     }
   render() {
-    const { classes } = this.props;
-    const { firstName, lastName, age, hobby, info} = this.state
+    const { classes, user: {info} } = this.props;
+    const { firstName, lastName, age, hobby} = this.state
     const userTable = info.map(user => <UserDetail key={user.id} firstName={user.firstName} lastName={user.lastName} birthday={user.birthday} age={user.age} hobby={user.hobby}/>)
     return (
       <Grid container className={classes.form}>
@@ -144,4 +150,12 @@ class Form extends Component {
   }
 }
 
-export default withStyles(styles)(Form);
+const mapStateToProps = (state) => ({  
+  user: state.user
+});
+
+const mapActionsToProps = {
+  addUser
+}
+
+export default connect(mapStateToProps, mapActionsToProps)(withStyles(styles)(Form));
