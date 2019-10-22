@@ -26,7 +26,11 @@ const styles = {
     paper: {
       minHeight: 550,
       padding: 20,
-      minWidth: 300
+      minWidth: 300,
+      postion: 'fixed'
+    },
+    over: {
+      overflow: 'hidden'
     }
 };
 
@@ -36,7 +40,8 @@ const infos = [{
   birthday: '22 june 1998',
   age: '22',
   hobby : 'watching Anime'
-}];
+}
+];
 
 class Form extends Component {
     state = {
@@ -56,7 +61,6 @@ class Form extends Component {
       const { firstName, lastName, birthday, age, hobby } = this.state
       const newInfo = {firstName, lastName, birthday, age, hobby};
       infos.push(newInfo)
-      console.log(infos)
       this.setState({info: infos})
     }
   render() {
@@ -66,9 +70,13 @@ class Form extends Component {
     return (
       <Grid container className={classes.form}>
         <Grid item sm >
-          <Paper className={classes.paper}>
-            {userTable}
-          </Paper>
+          <div className={classes.over}>
+            <Paper className={classes.paper}>
+              <Typography variant='h5'>Added UserDetails</Typography>
+              {userTable}
+            </Paper>
+          </div>
+          
         </Grid>
         <Grid item sm>
           <Typography variant="h4" className={classes.pageTitle}>
