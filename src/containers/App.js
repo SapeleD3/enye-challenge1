@@ -3,7 +3,7 @@ import "./App.css";
 import Form from "../components/Form";
 
 import { Provider } from "react-redux";
-import store from "../Redux/store";
+import {store} from "../redux";
 
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 

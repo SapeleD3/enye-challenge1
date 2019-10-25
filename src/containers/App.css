@@ -10,3 +10,28 @@ body{
 p{
     margin: 0;
 }
+
+
+    .form {
+      text-align: 'center';
+      margin-top: 20px
+    }
+    .pageTitle {
+        margin: 20px auto 20px auto
+    }
+    .textField {
+        display: 'flex';
+        margin: 10px auto 10px auto;
+        width: 300px
+    }
+    button {
+        margin-top: 20px;
+    }
+    .paper {
+      min-height: 550px;
+      padding: 20px;
+      min-width: 300px;
+    }
+    .over{
+      overflow: hidden
+    }
