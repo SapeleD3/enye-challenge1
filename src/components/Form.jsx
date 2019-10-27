@@ -6,9 +6,8 @@ import { TextField, Button, Paper } from "@material-ui/core";
 import UserDetail from "./UserDetail";
 import {useDispatch, useSelector} from 'react-redux'
 
-import uuid from 'uuid/v4'
 import { makeStyles } from '@material-ui/core/styles';
-import {addinfoAction} from '../redux'
+import {addinfoAction} from '../actions'
 
 const styles = makeStyles(theme => ({
   form : {
@@ -53,7 +52,8 @@ function Form() {
   );
   const info = useSelector(state => state.info)
   const dispatch = useDispatch()
-  const addInfo = (info) => dispatch(addinfoAction(info))
+  const addInfo = (infos) => dispatch(addinfoAction(infos))
+
     
     const handleChange = (e) => {
       setUserInput({[e.target.name]: e.target.value})
@@ -62,7 +62,6 @@ function Form() {
     const handleSubmit = (e) => {
       e.preventDefault()
       addInfo({
-        id : uuid(),
         firstName: userInput.firstName,
         lastName: userInput.lastName,
         birthday: userInput.birthday,
@@ -70,14 +69,13 @@ function Form() {
         hobby: userInput.hobby
       })
     }
-    const userTable = info.map(user => <UserDetail key={user.id} firstName={user.firstName} lastName={user.lastName} birthday={user.birthday} age={user.age} hobby={user.hobby}/>)
     return (
       <Grid container className={classes.form}>
         <Grid item sm >
           <div className={classes.over}>
             <Paper className={classes.paper}>
               <Typography variant='h5'>Added UserDetails</Typography>
-              {userTable}
+              <UserDetail />
             </Paper>
           </div>
           
