@@ -13,7 +13,6 @@ import {setInfo} from '../actions'
 
      render () {
         const {info} = this.props
-        console.log(info)
         const userTable = info.map(user => <Card className='userCard' key={user.userId}> 
             <p>FullName: {user.firstName}   {user.lastName} </p> <br/>
             <p>Birthday: {` ${user.birthday}  `}</p> Age: {user.age} <br/>

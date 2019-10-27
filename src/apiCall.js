@@ -1,12 +1,9 @@
+import axios from 'axios'
 const apiCall = async (info) => {
-     console.log(info)
+     console.log(JSON.stringify(info))
     try {
-        const response = await fetch('https://us-central1-enye-fireside.cloudfunctions.net/api/', {
-            method: 'POST',
-            body: JSON.stringify(info)
-        });
+        const response = await axios.post('https://us-central1-enye-fireside.cloudfunctions.net/api', info);
         const data = await response.json();
-        console.log(data)
         return data
     } catch (error) {
         

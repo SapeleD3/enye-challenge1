@@ -13,6 +13,8 @@ export const setInfo = () => ({
     type: REQUEST_INFO
 })
 
-export const sendInfo = () => ({
-    type: SEND_INFO
+
+export const sendinfoAction = (info) => ({
+    type: SEND_INFO,
+    payload: info
 })

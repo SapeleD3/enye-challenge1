@@ -7,7 +7,7 @@ import UserDetail from "./UserDetail";
 import {useDispatch, useSelector} from 'react-redux'
 
 import { makeStyles } from '@material-ui/core/styles';
-import {addinfoAction} from '../actions'
+import {sendinfoAction} from '../actions'
 
 const styles = makeStyles(theme => ({
   form : {
@@ -52,7 +52,7 @@ function Form() {
   );
   const info = useSelector(state => state.info)
   const dispatch = useDispatch()
-  const addInfo = (infos) => dispatch(addinfoAction(infos))
+  const addInfo = (infos) => dispatch(sendinfoAction(infos))
 
     
     const handleChange = (e) => {
