@@ -9,7 +9,6 @@ function* postInfo(action){
       const info = yield select(getInfo)
       const data = yield call (apiCall, info)
       yield put(setInfo(data))
-      console.log('here', info)  
     } catch (e) {
         console.log(e)
     }

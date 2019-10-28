@@ -21,7 +21,6 @@ function* startListener() {
     })
 
     while(true) {
-        console.log('get here')
         const { data } = yield take(chan);
         yield put(addinfoAction(data));
     }
