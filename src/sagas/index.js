@@ -1,9 +1,9 @@
 import { all, fork } from "redux-saga/effects";
 import * as infoSaga from "./infoSaga";
-import * as sendInfoSaga from './sendInfoSaga'
+import * as getInfoSaga from './getInfoSaga'
 
 export default function* saga() {
     yield all(
-        [...Object.values(infoSaga), ...Object.values(sendInfoSaga)].map(fork)
+        [...Object.values(infoSaga), ...Object.values(getInfoSaga)].map(fork)
       );
 }

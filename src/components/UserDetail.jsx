@@ -6,17 +6,15 @@ import Card from '@material-ui/core/Card';
 import {setInfo} from '../actions'
 
  class UserDetail extends React.Component {
-
-    // componentDidMount(){
-        // this.props.setInfo()
-    // }
+   
 
      render () {
         const {info} = this.props
         const userTable = info.map(user => <Card className='userCard' key={user.userId}> 
             <p>FullName: {user.firstName}   {user.lastName} </p> <br/>
             <p>Birthday: {` ${user.birthday}  `}</p> Age: {user.age} <br/>
-            Hobby: {user.hobby}
+            <p>Hobby: {user.hobby}</p>
+            user Id: {user.userId}
          </Card>)
         return (
             <div>
